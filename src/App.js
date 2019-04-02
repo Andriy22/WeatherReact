@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import 'bulma/css/bulma.css'
 import './App.css';
 
 const PLEACES=[
@@ -32,7 +33,7 @@ class WeatherService extends Component{
     const WeatherData = this.state.WeatherData;
     if(!WeatherData)
     {
-      return <div class="fg-red">Loading...</div>
+      return <div>Loading...</div>
     }
     const weather = WeatherData.weather[0];
     const IconURl = "http://api.openweathermap.org/img/w/"+weather.icon+".png";
@@ -65,7 +66,7 @@ class App extends Component {
       <div className="App">
         <WeatherService zip={PLEACES[activePlace].zip}  key={activePlace}/>
         {PLEACES.map((place,index)=>(
-          <button class="button alert outline" key={index} onClick={ ()=> {
+          <button className={index%2==0? "button is-link" : "button is-danger"} if key={index} onClick={ ()=> {
            this.setState({activePlace:index})
           }}>Get Weather from {place.name}</button>
         ))}
